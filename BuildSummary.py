@@ -25,8 +25,12 @@ def return_snowflake_conn():
 def run_ctas():
     cursor = return_snowflake_conn()
 
+    create_schema = """
+    CREATE SCHEMA IF NOT EXISTS dev.ANALYTICS;
+    """
+    
     create_session_summary = """
-    CREATE OR REPLACE TABLE raw_data.session_summary AS
+    CREATE OR REPLACE TABLE dev.ANALYTICS.session_summary AS
     SELECT
         usc.userId,
         usc.sessionId,
